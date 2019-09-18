@@ -1,0 +1,23 @@
+# Estudos OpenCV para Detecção facial/objetos!
+# IPESU - Aluno: Gabriel de Moraes Campos - Computação 2019.2
+
+import cv2 # Importar o OpenCv
+
+cascata_1 = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
+img_1 = cv2.imread('eu.jpg', 1) # Ler a imagem colorida
+
+img_cor = cv2.cvtColor(img_1, cv2.COLOR_BGR2GRAY)
+
+face_1 = cascata_1.detectMultiScale(img_cor, scaleFactor = 1.05,
+                                    minNeighbors=5)
+print(type(face_1))
+print(face_1)
+
+for x,y,w,h in face_1:
+    img_1 = cv2.rectangle(img_1, (x,y), (x+w, y+h), (0, 2550, 0),3)
+
+cv2.imshow('Molay v1', img_1)
+cv2.waitKey(0)
+
+cv2.destroyAllWindows()
